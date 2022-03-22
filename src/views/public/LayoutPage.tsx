@@ -1,8 +1,11 @@
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { FaMap, FaEnvelope, FaInstagramSquare, FaBars, FaTimes, FaPhoneAlt } from 'react-icons/fa';
 import { MainContext } from '../../context/MainProvider';
 
-import '../../styles/bootstrap.min.css';
+// import second from 'bootstrap/dist/css'
+
+import 'bootstrap/dist/css/bootstrap.css';
 import './landingpage.css';
 
 const menuList = [
@@ -15,6 +18,7 @@ const menuList = [
 
 export const LayoutPage = () => {
   const { scroll } = useContext(MainContext);
+  const [menuCheck, setMenuCheck] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const navlinkRef = useRef<HTMLDivElement>(null);
   const navbarRef = useRef<HTMLElement>(null);
@@ -34,10 +38,12 @@ export const LayoutPage = () => {
     } else {
       navbarRef.current?.classList.remove('active');
     }
+    setMenuCheck(false);
   };
 
   const handleMenu = () => {
-    menuRef.current?.classList.toggle('fa-times');
+    setMenuCheck((stmenu) => !stmenu);
+    // menuRef.current?.classList.toggle('fa-times');
     navlinkRef.current?.classList.toggle('active');
   };
 
@@ -46,20 +52,33 @@ export const LayoutPage = () => {
       <header ref={headerRef} className="header">
         <div className="contact-info">
           <p>
-            <i className="fas fa-map"></i> mumbai, india - 400104
+            <FaMap className="icon" /> Barcelona, Anzoategui - Ven.
           </p>
           <p>
-            <i className="fas fa-envelope"></i> shaikhanas@gmail.com
+            <FaEnvelope className="icon" /> servidentco@gmail.com
           </p>
           <p>
-            <i className="fas fa-phone"></i> +123-456-7890
+            <FaPhoneAlt className="icon" /> +123-456-7890
+          </p>
+          <p>
+            <FaInstagramSquare className="icon" /> @servidentmj
           </p>
         </div>
 
         <nav ref={navbarRef} className="navbar">
-          <a href="#" className="logo">
-            <i className="fas fa-tools mr-2"></i>fixpro
-          </a>
+          <div className="logo">
+            <img src="/images/servident-mj.svg" alt="servident mj" />
+            <div className="logoname">
+              <h1>
+                <span className="colorfucsia fontAlata">ServiDent</span>
+                <span className="ml-2 colorvioleta fontAlata">MJ</span>
+              </h1>
+              <h3>
+                <span className="colorvioleta fontAlata">CENTRO</span>
+                <span className="colorfucsia ml-2 fontAlata">ODONTOLOGICO</span>
+              </h3>
+            </div>
+          </div>
           <div ref={navlinkRef} className="links">
             {menuList.map((menuItem) => (
               <a key={menuItem.route} href={`#${menuItem.route}`}>
@@ -67,7 +86,9 @@ export const LayoutPage = () => {
               </a>
             ))}
           </div>
-          <div id="menu-btn" ref={menuRef} onClick={handleMenu} className="fas fa-bars"></div>
+          <div id="menu-btn" ref={menuRef} onClick={handleMenu}>
+            {menuCheck ? <FaTimes /> : <FaBars />}
+          </div>
         </nav>
       </header>
       <Outlet />

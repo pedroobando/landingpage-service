@@ -4,6 +4,52 @@ import GallerySection from './partial/GallerySection';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import BannerSection, { iButton } from './partial/BannerSection';
+import FunsSection from './partial/FunsSection';
+import CardSection, { iCard } from './partial/CardSection';
+
+const serviceSDMJ: iCard[] = [
+  {
+    title: 'Protesis metalicas',
+    comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.',
+    image: '/images/service-protmetal.svg',
+  },
+  {
+    title: 'Protesis fijas',
+    comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.',
+    image: '/images/service-protfix.svg',
+  },
+  {
+    title: 'Protesis acrilicas',
+    comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.',
+    image: '/images/service-protacri.svg',
+  },
+  {
+    title: 'Protesis provicionales',
+    comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.',
+    image: '/images/service-protfixed.svg',
+  },
+  {
+    title: 'Ortopedia',
+    comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.',
+    image: '/images/service-braces.svg',
+  },
+  {
+    title: 'dsdsdsd',
+    comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.',
+    image: '/images/service-consult.svg',
+  },
+  {
+    title: 'dsdsdsd',
+    comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.',
+    image: '/images/service-repair.svg',
+  },
+  {
+    title: 'dsdsdsd',
+    comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.',
+    image: '/images/service-dental.svg',
+  },
+];
 
 export const LandingPage = () => {
   const { doScroll } = useContext(MainContext);
@@ -21,124 +67,49 @@ export const LandingPage = () => {
     doScroll(window.scrollY);
   };
 
+  const buttonHome: iButton = {
+    label: 'nosotros',
+    link: '#about',
+  };
+
   return (
     <>
-      <section className="home" id="home">
-        <div className="image" data-aos="fade-right">
-          <img src="images/home-img.svg" alt="" />
-        </div>
+      <BannerSection
+        id="home"
+        classname={'home'}
+        image={'/images/dentalab.jpg'}
+        title={'El cuidado de tu sonrisa, déjalo en manos de profesionales.'}
+        comment={[
+          'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit incidunt aspernatur perspiciatis accusamus illum quam!',
+          'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+          'Fugit incidunt aspernatur perspiciatis accusamus illum quam!',
+        ]}
+        directionright={true}
+        actButton={buttonHome}
+      />
 
-        <div className="content">
-          <h3>Why fix it yourself? Leave it to the pros.</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit incidunt aspernatur,
-            perspiciatis accusamus illum quam!
-          </p>
-          <a href="#about" className="btn">
-            get started
-          </a>
-        </div>
-      </section>
+      <FunsSection />
 
-      <section className="fun-fact" data-aos="fade-up">
-        <div className="box">
-          <img src="images/fun-fact-icon-1.svg" alt="" />
-          <div className="info">
-            <h3>2890</h3>
-            <p>repairs done</p>
-          </div>
-        </div>
+      <BannerSection
+        id={'about'}
+        classname={'about'}
+        title="Productos de la mejor calidad"
+        subtitle={true}
+        image={'images/quality.jpg'}
+        comment={[
+          'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim laboriosam quidem eaque, ex qui fugit velit veniam veritatis a nostrum amet perspiciatis pariatur ducimus ipsam  officiis quae cumque maiores voluptates!',
+          'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus iste ab eos earerum obcaecati illo ex recusandae expedita aspernatur?',
+        ]}
+        directionright={false}
+        // actButton={{ label: 'Read more', link: '#services' }}
+      />
 
-        <div className="box">
-          <img src="images/fun-fact-icon-2.svg" alt="" />
-          <div className="info">
-            <h3>25</h3>
-            <p>awards won</p>
-          </div>
-        </div>
-
-        <div className="box">
-          <img src="images/fun-fact-icon-3.svg" alt="" />
-          <div className="info">
-            <h3>3585</h3>
-            <p>happy clients</p>
-          </div>
-        </div>
-
-        <div className="box">
-          <img src="images/fun-fact-icon-4.svg" alt="" />
-          <div className="info">
-            <h3>45</h3>
-            <p>active workers</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="about" id="about">
-        <div className="content">
-          <h3>best quality Repair services</h3>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim laboriosam quidem eaque,
-            ex qui fugit velit veniam veritatis a nostrum amet perspiciatis pariatur ducimus ipsam
-            officiis quae cumque maiores voluptates!
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus iste ab eos ea
-            rerum obcaecati illo ex recusandae expedita aspernatur?
-          </p>
-          <a href="#services" className="btn">
-            read more
-          </a>
-        </div>
-
-        <div className="image">
-          <img src="images/about-img.svg" alt="" />
-        </div>
-      </section>
-
-      <section className="services" id="services">
-        <h1 className="heading">
-          our <span>services</span>
-        </h1>
-
-        <div className="box-container">
-          <div className="box">
-            <img src="images/service-1.svg" alt="" />
-            <h3>computer repair</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.</p>
-          </div>
-
-          <div className="box">
-            <img src="images/service-2.svg" alt="" />
-            <h3>laptop repair</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.</p>
-          </div>
-
-          <div className="box">
-            <img src="images/service-3.svg" alt="" />
-            <h3>smartphone repair</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.</p>
-          </div>
-
-          <div className="box">
-            <img src="images/service-4.svg" alt="" />
-            <h3>game console repair</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.</p>
-          </div>
-
-          <div className="box">
-            <img src="images/service-5.svg" alt="" />
-            <h3>multi media repair</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.</p>
-          </div>
-
-          <div className="box">
-            <img src="images/service-6.svg" alt="" />
-            <h3>smartwatch repair</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.</p>
-          </div>
-        </div>
-      </section>
+      <CardSection
+        id={'services'}
+        title={'Nuestros servicios'}
+        className={'services'}
+        cards={serviceSDMJ}
+      />
 
       <GallerySection />
 
@@ -263,7 +234,7 @@ export const LandingPage = () => {
               </p>
             </div>
             <div className="user">
-              <img src="images/pic-1.png" alt="" />
+              <img src="images/client-4.jpg" alt="" />
               <h3>john deo</h3>
             </div>
           </div>
@@ -284,7 +255,7 @@ export const LandingPage = () => {
               </p>
             </div>
             <div className="user">
-              <img src="images/pic-2.png" alt="" />
+              <img src="images/client-1.jpg" alt="" />
               <h3>john deo</h3>
             </div>
           </div>
@@ -305,7 +276,7 @@ export const LandingPage = () => {
               </p>
             </div>
             <div className="user">
-              <img src="images/pic-3.png" alt="" />
+              <img src="images/client-6.jpg" alt="" />
               <h3>john deo</h3>
             </div>
           </div>
